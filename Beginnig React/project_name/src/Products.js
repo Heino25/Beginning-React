@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 class Products extends Component {
+    
     render() {
         const products = ["Learning React","Pro React","Beginning React"];
         const listProducts = products.map((products) =>
