@@ -2,11 +2,14 @@ import React, { Component } from "react";
 
 class Products extends Component {
     render() {
+        const products = ["Learning React","Pro React","Beginning React"];
+        const listProducts = products.map((products) =>
+        <li key={products.toString()}>{products}</li>
+        );
+
       return (
         <div>
-            <h2>
-                Products
-            </h2>
+            <ul>{listProducts}</ul>
         </div>
       );
     }
