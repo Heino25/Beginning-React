@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Rating from './Rating';
-import { Card } from 'react-bootstrap';//Card is used instead of Media from react-bootstrap
+import { Card } from 'react-bootstrap';//"Card" is used instead of "Media from react-bootstrap
 // Looks like NB-"Media" is changed to "Card" component in newer versions of react-bootstrap. https://react-bootstrap.github.io/components/cards/
 
 //You should use:
@@ -9,14 +9,24 @@ import { Card } from 'react-bootstrap';//Card is used instead of Media from reac
 
 class Product extends Component {
 
-  constructor(props){
-    super(props);    
-  }
+    constructor(props) {
+        super(props);
+    }
 
-  render() { 
-    return (
-      <div>                
-        <Card>
+    render() {
+
+        const listProducts = this.products.map((product) =>
+            <Product key={product.productName} data={product} />
+        );
+
+        return (
+            <div>
+                {listProducts.length > 0 ? (
+                    <ul>{listProducts}</ul>
+                ) : (
+                    <ul>No Products to display</ul>
+                )}
+                {/* <Card>
             <img 
                 width={64} 
                 height={64} 
@@ -30,10 +40,10 @@ class Product extends Component {
                 <Rating rating={this.props.data.rating} numOfReviews={this.props.data.numOfReviews}/>
                 <p>{this.props.data.description}</p>
             </Card.Body>
-        </Card>                                                                                                                                   
-      </div>
-    );
-  }
+        </Card>*/}
+            </div>
+        );
+    }
 }
 
 export default Product;
