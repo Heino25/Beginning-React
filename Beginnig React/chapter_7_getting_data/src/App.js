@@ -1,33 +1,44 @@
 import React, { Component } from 'react';
 import GitHub from './GitHub';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { render } from '@testing-library/react';
+import { BrowserRouter, Route, Router } from 'react-router-dom';
+import { Nav, Navbar } from 'react-bootstrap';
+import GitHubUser from './GitHubUser';
 
-class App extends Component { 
-      
+
+class App extends Component {       
   render() {        
     return (
       <div>
-        <Header />                        
+        <Header />
       </div>
     );
   }
 }
-
 export default App;
 
 class Header extends Component {
   render(){
     return (
-      <BrowserRouter>
-      <div>
-        <Switch>
-          <Route path="/github" component={GitHub} />
-          <Route exact path="/" component={Home} />
-          <Route path="/*" component={NotFound} />
-        </Switch>
-      </div>
-      </BrowserRouter>
+        <BrowserRouter>
+          <div>            
+            <Navbar bg="light" expand="lg">
+              <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+              <Navbar.Toggle aria-controls="basic-navbar-nav" />
+              <Navbar.Collapse id="basic-navbar-nav">
+                <Nav className="mr-auto">
+                  <Nav.Link href="/">Home</Nav.Link>
+                  <Nav.Link href="/github">GitHub</Nav.Link>                  
+                </Nav>
+              </Navbar.Collapse>
+            </Navbar>
+            <Router> 
+              <Route path="/github/user/:login/:id" component={GitHubUser} />                                                                
+              <Route path="/github" component={GitHub} />              
+              <Route exact path="/" component={Home} />             
+              <Route path="/*" component={NotFound} />                       
+            </Router>   
+          </div>  
+        </BrowserRouter>              
     )
   }
 }
@@ -36,7 +47,7 @@ class Home extends Component {
   render(){
     return (
       <div>
-        Home
+        Home        
       </div>
     )
   }
